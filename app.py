@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify
 from data import products, questions
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+import jieba
 import numpy as np
 
 app = Flask(__name__)
@@ -26,7 +27,12 @@ def longest_common_subsequence(X, Y):
 # -----------------------------------
 # TF-IDF + 余弦相似度
 # -----------------------------------
-def calculate_tfidf_cosine_similarity(query, texts):
+def calculate_tfidf_cosine_similarity(query, texts, use_jieba=False):
+    if use_jieba:
+        # 使用jieba分词
+        texts = [" ".join(jieba.cut(text)) for text in texts]
+        query = " ".join(jieba.cut(query))
+    
     tfidf_vectorizer = TfidfVectorizer()
     tfidf_matrix = tfidf_vectorizer.fit_transform(texts)
     query_vec = tfidf_vectorizer.transform([query])
@@ -47,7 +53,7 @@ def find_closest_products(query, num_results=3, method='lcs'):
         matches.sort(key=lambda match: match[0], reverse=True)
     elif method == 'tfidf':
         names = [product['name'] for product in products]
-        similarities = calculate_tfidf_cosine_similarity(query, names)
+        similarities = calculate_tfidf_cosine_similarity(query, names, use_jieba=True)
         matches = sorted(zip(similarities, products), key=lambda match: match[0], reverse=True)
     else:
         raise ValueError("Invalid method: choose 'lcs' or 'tfidf'")
@@ -71,7 +77,7 @@ def find_closest_answer(question, method='lcs'):
 
     elif method == 'tfidf':
         q_list = list(questions.keys())
-        similarities = calculate_tfidf_cosine_similarity(question, q_list)
+        similarities = calculate_tfidf_cosine_similarity(question, q_list, use_jieba=True)
         best_index = np.argmax(similarities)
         best_question = q_list[best_index]
 
