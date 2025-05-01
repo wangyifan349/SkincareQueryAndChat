@@ -16,9 +16,6 @@
 
 ```
 /SkincareQueryAndChat
-    /static
-        /css
-            style.css
     /templates
         layout.html
         index.html
@@ -30,39 +27,20 @@
 ```
 
 - **app.py**：主程序文件，定义了 Flask 应用的路由和逻辑。
-- **data.py**：包含产品和问答数据的硬编码数据库。
-- **templates/**：存放 HTML 模板文件，用于页面渲染。
-- **static/css/style.css**：存放 CSS 样式文件。
+- **data.py**：包含产品和问答数据的硬编码数据库。所有用于查询和交互的数据均存储在此文件中。
+- **templates/**：存放 HTML 模板文件，其中内嵌了 CSS 样式，用来定义页面布局和主题色彩。
 
 ## 数据说明 (data.py)
 
-### 产品数据
+`data.py` 中存储了应用程序用来提供查询和问答的硬编码数据。以下是一些示例问答：
 
-以字典列表的形式存储，每个字典代表一个产品，包含 `name`、`type` 和 `info`。
+- **问题**：What is aspirin used for and how does it work?
+  - **答案**：Aspirin is commonly used to reduce pain, fever, or inflammation. It is also used as an antiplatelet drug to prevent blood clots, which can help prevent heart attacks and strokes. Aspirin works by blocking the production of certain natural substances that cause inflammation and reduce blood clotting in the circulatory system.
+  
+- **问题**：How does benzoyl peroxide help in treating acne?
+  - **答案**：Benzoyl peroxide helps treat acne by acting as a peeling agent, increasing skin turnover and clearing pores, thus reducing bacterial count and inflammation. It introduces oxygen, creating an environment where acne-causing bacteria cannot survive.
 
-示例：
-```python
-products = [
-    {
-        "name": "Aspirin",
-        "type": "medicine",
-        "info": "一种用于减轻疼痛、发热或炎症的止痛药，也用作抗血小板剂以预防心脏病发作。"
-    },
-    # 更多产品...
-]
-```
-
-### 问答数据
-
-以字典形式存储，问题作为键，对应的答案作为值。
-
-示例：
-```python
-questions = {
-    "What is aspirin?": "Aspirin 用于减轻疼痛、发热或炎症，也用作抗血小板以预防心脏病。",
-    # 更多问题...
-}
-```
+请注意，所有问答数据和产品信息都存储在 `data.py` 文件中，应用程序通过读取这些数据来提供相应的功能。
 
 ## 安装说明
 
