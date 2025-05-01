@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block title %}Product Detail{% endblock %}
+
+{% block content %}
+<h1 class="text-success">Product Detail</h1>
+{% if product %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ product['name'] }}</h5>
+            <p class="card-text"><strong>Type:</strong> {{ product['type'] }}</p>
+            <p class="card-text"><strong>Information:</strong> {{ product['info'] }}</p>
+        </div>
+    </div>
+{% else %}
+    <div class="alert alert-warning">Product not found.</div>
+{% endif %}
+<a href="/" class="btn btn-secondary mt-3">Back to Home</a>
+{% endblock %}
