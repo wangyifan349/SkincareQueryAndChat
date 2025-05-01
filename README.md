@@ -42,6 +42,8 @@
 
 请注意，所有问答数据和产品信息都存储在 `data.py` 文件中，应用程序通过读取这些数据来提供相应的功能。
 
+请补充数据至 data.py，例如医疗数据、护肤品相关信息或其他您专业领域的数据！
+
 ## 安装说明
 
 为了成功运行应用，请确保在全局 Python 环境中安装以下依赖项。
@@ -52,29 +54,21 @@
    git clone https://github.com/wangyifan349/SkincareQueryAndChat.git
    cd SkincareQueryAndChat
    ```
-
 2. **安装依赖**：
-
    运行以下命令安装所需的 Python 包：
-
    ```bash
    pip install -r requirements.txt
    ```
-
 ## 运行应用
 
 1. **启动应用**：
 
    使用以下命令启动 Flask 开发服务器：
-
    ```bash
    python app.py
    ```
-
 2. **访问应用**：
-
    打开你的浏览器，访问 `http://127.0.0.1:5000` 查看应用。
-
 ## 使用指南
 
 - **主页**：使用产品搜索功能查找特定产品。
