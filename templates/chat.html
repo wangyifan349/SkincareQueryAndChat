@@ -3,16 +3,63 @@
 {% block title %}Chat{% endblock %}
 
 {% block content %}
-<h1 class="text-success">Chat</h1>
-<div class="chat-box border rounded bg-light p-3 mb-3" style="height: 400px; overflow-y: scroll;">
-    <div id="chat-content"></div>
-</div>
-<form id="chat-form">
-    <div class="form-group">
-        <input type="text" class="form-control" id="question" placeholder="Type your question...">
+<h1 class="text-warning">Chat</h1>
+<div class="chat-container mx-auto" style="max-width: 600px;">
+    <div class="chat-box border rounded bg-light p-4 mb-3" style="height: 500px; overflow-y: scroll; background-color: #f8f2e4;">
+        <div id="chat-content" class="font-weight-bold text-dark"></div>
     </div>
-    <button type="submit" class="btn btn-success">Send</button>
-</form>
+    <form id="chat-form" class="d-flex">
+        <input type="text" class="form-control mr-2" id="question" placeholder="Type your question...">
+        <button type="submit" class="btn btn-warning">Send</button>
+    </form>
+</div>
+
+<style>
+    body {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #f9f7f0;
+    }
+
+    h1, h2 {
+        margin-bottom: 20px;
+    }
+
+    .chat-container {
+        max-width: 600px;
+    }
+
+    .chat-box {
+        background-color: #f8f2e4 !important;
+        color: #5a5a5a;
+    }
+
+    .btn-warning {
+        background-color: #d4af37;
+        border: none;
+    }
+
+    .btn-warning:hover {
+        background-color: #b98e2f;
+    }
+
+    .navbar {
+        margin-bottom: 20px;
+        background-color: #d4af37 !important;
+    }
+
+    .navbar a {
+        color: white !important;
+    }
+
+    .chat-box #chat-content div {
+        margin-bottom: 10px;
+    }
+
+    #question {
+        font-size: 1.1rem;
+    }
+</style>
 
 <script>
 $(document).ready(function() {
@@ -20,9 +67,9 @@ $(document).ready(function() {
         event.preventDefault();
         let question = $('#question').val();
         if (question.trim() !== '') {
-            $('#chat-content').append(`<div class="mt-2"><strong>You:</strong> ${question}</div>`);
+            $('#chat-content').append(`<div class="mt-3"><strong>You:</strong> ${question}</div>`);
             $.post('/ask', {question: question}, function(response) {
-                $('#chat-content').append(`<div class="mt-2"><strong>Bot:</strong> ${response.answer}</div>`);
+                $('#chat-content').append(`<div class="mt-3"><strong>Bot:</strong> ${response.answer}</div>`);
                 $('#question').val('');
                 $('.chat-box').scrollTop($('.chat-box')[0].scrollHeight);
             });
