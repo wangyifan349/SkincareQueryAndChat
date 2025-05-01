@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block title %}Chat{% endblock %}
+
+{% block content %}
+<h1 class="text-success">Chat</h1>
+<div class="chat-box border rounded bg-light p-3 mb-3" style="height: 400px; overflow-y: scroll;">
+    <div id="chat-content"></div>
+</div>
+<form id="chat-form">
+    <div class="form-group">
+        <input type="text" class="form-control" id="question" placeholder="Type your question...">
+    </div>
+    <button type="submit" class="btn btn-success">Send</button>
+</form>
+
+<script>
+$(document).ready(function() {
+    $('#chat-form').on('submit', function(event) {
+        event.preventDefault();
+        let question = $('#question').val();
+        if (question.trim() !== '') {
+            $('#chat-content').append(`<div class="mt-2"><strong>You:</strong> ${question}</div>`);
+            $.post('/ask', {question: question}, function(response) {
+                $('#chat-content').append(`<div class="mt-2"><strong>Bot:</strong> ${response.answer}</div>`);
+                $('#question').val('');
+                $('.chat-box').scrollTop($('.chat-box')[0].scrollHeight);
+            });
+        }
+    });
+});
+</script>
+{% endblock %}
