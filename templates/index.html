@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1 class="text-success">Product Search</h1>
+<form method="post">
+    <div class="form-group">
+        <input type="text" class="form-control" name="query" placeholder="Enter product name">
+    </div>
+    <button type="submit" class="btn btn-success">Search</button>
+</form>
+<ul class="list-group mt-3">
+    {% for result in search_results %}
+    <li class="list-group-item">
+        <a href="{{ url_for('product_detail', product_name=result['name']) }}">{{ result['name'] }}</a> - {{ result['info'] }}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
