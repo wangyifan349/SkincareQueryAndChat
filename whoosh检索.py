@@ -55,9 +55,16 @@ def search(query_str, score_threshold=0.0):
         df = pd.DataFrame(data)
         print(df)
 # -----------------------------------------------
-# Set the score threshold, perform searches and print results
-score_threshold = 0.5  # Defined score threshold
-print("Searching for 'Vitamin' with score threshold 0.5:")
-search("Vitamin", score_threshold)
-print("\nSearching for 'Antibiotic' with score threshold 0.5:")
-search("Antibiotic", score_threshold)
+# Interactive mode for continuous communication
+def interactive_mode():
+    score_threshold = 0.5  # Default score threshold
+    while True:
+        query_str = input("Enter your search query (or type 'exit' to quit): ")
+        
+        if query_str.lower() == 'exit':
+            print("Exiting the search.")
+            break
+        print(f"Searching for '{query_str}' with score threshold {score_threshold}:")
+        search(query_str, score_threshold)
+# Start interactive mode
+interactive_mode()
