@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>药物学知识库 - 详细版</title>
+  <!-- 引入 Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      padding-top: 70px;
+      background: #f8f9fa;
+      font-size: 1rem;
+    }
+    .card-img-top {
+      object-fit: cover;
+      height: 180px;
+    }
+    .section-title {
+      border-bottom: 2px solid #0d6efd;
+      padding-bottom: 5px;
+      margin-bottom: 20px;
+      color: #0d6efd;
+    }
+    .nav-tabs .nav-link.active {
+      background-color: #0d6efd;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top shadow">
+    <div class="container">
+      <a class="navbar-brand" href="#">药物学知识库</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#antipyretics">退烧药</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#nsaids">非甾体抗炎药</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#antivirals">抗病毒药物</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主体内容区域 -->
+  <main class="container my-4">
+    <!-- 退烧药部分 -->
+    <section id="antipyretics" class="mb-5">
+      <h2 class="section-title">退烧药</h2>
+      <div class="row" id="antipyreticsCards">
+        <!-- 动态生成退烧药卡片 -->
+      </div>
+    </section>
+
+    <!-- 非甾体抗炎药部分 -->
+    <section id="nsaids" class="mb-5">
+      <h2 class="section-title">非甾体抗炎药</h2>
+      <div class="row" id="nsaidsCards">
+        <!-- 动态生成非甾体抗炎药卡片 -->
+      </div>
+    </section>
+
+    <!-- 抗病毒药物部分 -->
+    <section id="antivirals" class="mb-5">
+      <h2 class="section-title">抗病毒药物</h2>
+      <div class="row" id="antiviralsCards">
+        <!-- 动态生成抗病毒药物卡片 -->
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="bg-primary text-white text-center py-3">
+    <div class="container">
+      <small>&copy; 2023 药物学知识库. 保留所有权利.</small>
+    </div>
+  </footer>
+
+  <!-- 引入 Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- 动态生成药物卡片 -->
+  <script>
+    // 药物数据，按不同分类存储，增加了更详细的说明
+    const drugData = {
+      // 退烧药部分：侧重解热与镇痛药物的详细药理学、代谢和临床应用背景
+      antipyretics: [
+        {
+          name: "布洛芬",
+          image: "https://via.placeholder.com/600x200?text=布洛芬",
+          mechanism: "布洛芬是一种非甾体抗炎药（NSAID），其作用主要依赖于竞争性且可逆地抑制环氧合酶（COX-1与COX-2）酶活性，从而阻断前列腺素（尤其是PGE2）的合成。前列腺素在炎症反应、疼痛传导及体温调节中起重要作用，因此布洛芬能同时发挥解热、镇痛和抗炎效果。",
+          indications: ["退烧", "镇痛", "抗炎"],
+          details: "布洛芬被广泛用于缓解感冒引起的发热和疼痛症状，适用于轻度到中度疼痛的成人和儿童。在临床上，被常用于头痛、牙痛、肌肉痛以及一些关节炎症状的管理。布洛芬具有较好的耐受性，代谢主要在肝脏进行，随后经肾脏排泄。"
+        },
+        {
+          name: "对乙酰氨基酚",
+          image: "https://via.placeholder.com/600x200?text=对乙酰氨基酚",
+          mechanism: "对乙酰氨基酚主要作用于中枢神经系统，特别是下丘脑体温中枢，能够提高热调节下限，从而降低体温以及减轻疼痛。与NSAIDs不同，其对外周炎症介质的抑制作用较弱，因此对胃肠道具有较好的安全性。",
+          indications: ["退烧", "镇痛"],
+          details: "对乙酰氨基酚常被用于治疗轻至中度疼痛，如头痛、关节痛与牙痛，同时也被作为发热时的首选药物。由于其药物代谢主要依赖于肝脏，因此在肝功能异常的患者中应谨慎使用。该药物在剂量控制范围内安全性较高，并且更适合儿童使用。"
+        }
+      ],
+      // 非甾体抗炎药部分：扩展介绍NSAIDs在炎症反应中的多重作用机制及应用注意事项
+      nsaids: [
+        {
+          name: "阿司匹林",
+          image: "https://via.placeholder.com/600x200?text=阿司匹林",
+          mechanism: "阿司匹林通过不可逆性抑制COX-1和COX-2，从而减少前列腺素和血栓素A2的合成。其独特之处在于抑制血小板聚集的持续效果，这使得其在心血管疾病的预防中也发挥重要作用。",
+          indications: ["退烧", "镇痛", "抗血小板"],
+          details: "阿司匹林不仅用于缓解发热及轻度至中度疼痛，还被广泛应用于预防和治疗心血管疾病，尤其是在中风和心肌梗死的二级预防中。由于阿司匹林具有可能引起胃肠道不适或出血的副作用，因此应根据个体情况调整剂量及联合使用胃保护药。"
+        },
+        {
+          name: "萘普生",
+          image: "https://via.placeholder.com/600x200?text=萘普生",
+          mechanism: "萘普生通过可逆性抑制COX酶活性，有效减少炎症介质如前列腺素的产生，达到抗炎、镇痛和解热的作用。同时，其药代动力学特性使得其在体内维持较稳定的药效。",
+          indications: ["抗炎", "镇痛", "退热"],
+          details: "萘普生常用于各种急慢性的炎症性疾病，如关节炎、风湿病及软组织损伤。同时，也适用于因炎症引起的发热和轻中度疼痛患者。服用过程中需密切关注胃肠道反应，尤其是长期使用时建议在医生指导下使用。"
+        }
+      ],
+      // 抗病毒药物部分：提供更多临床研究数据及不同抗病毒机制对比
+      antivirals: [
+        {
+          name: "奥司他韦",
+          image: "https://via.placeholder.com/600x200?text=奥司他韦",
+          mechanism: "奥司他韦是一种神经氨酸酶抑制剂，能够有效阻止流感病毒在感染细胞内新生病毒的释放，从而限制病毒在呼吸道的扩散。该药物的作用机理使其在早期干预流感感染时效果显著。",
+          indications: ["流感病毒感染", "流感的预防"],
+          details: "奥司他韦常用于流感病毒感染的治疗和预防，其最佳治疗时间窗为症状出现后48小时内。它能显著缩短病程、减轻症状，并减少并发症的发生风险。适用于成人和部分儿童，但在使用前应评估患者的肾功能。"
+        },
+        {
+          name: "阿昔洛韦",
+          image: "https://via.placeholder.com/600x200?text=阿昔洛韦",
+          mechanism: "阿昔洛韦通过竞争性抑制病毒特有的脱氧核糖核酸聚合酶，嵌入病毒DNA链中，从而阻止病毒复制。其在感染细胞内的选择性激活过程使毒性较低。",
+          indications: ["疱疹病毒感染", "带状疱疹"],
+          details: "阿昔洛韦是治疗单纯疱疹病毒和带状疱疹的首选药物。临床上，药物效果与给药时机密切相关，通常在症状初期给药效果最佳。用于免疫力较低的患者时，需要谨慎调整剂量，以防病毒耐药。"
+        },
+        {
+          name: "瑞德西韦",
+          image: "https://via.placeholder.com/600x200?text=瑞德西韦",
+          mechanism: "瑞德西韦为一种核苷酸类似物，通过嵌入到病毒RNA链中，从而导致链的提前终止，抑制病毒复制。该药物对多种RNA病毒均显示出一定的抑制作用。",
+          indications: ["COVID-19（新冠肺炎）", "埃博拉病毒感染"],
+          details: "瑞德西韦在新冠肺炎住院患者的研究中显示出缩短恢复时间的潜力，但需在医生的严格监测下使用。其抗病毒活性不仅限于SARS-CoV-2，也有临床试验探索在其他病毒感染中的应用。"
+        },
+        {
+          name: "扎那米韦",
+          image: "https://via.placeholder.com/600x200?text=扎那米韦",
+          mechanism: "扎那米韦同样为神经氨酸酶抑制剂，但其主要通过吸入方式给药，直接作用于呼吸道上皮细胞，减少病毒在呼吸道内的复制和传播。",
+          indications: ["流感病毒感染"],
+          details: "扎那米韦适用于成人及部分儿童，作为流感治疗及预防的辅助药物，其吸入给药方式能迅速达到作用部位。对于吸入不便或有呼吸道疾病的患者应适当调整给药方案。"
+        },
+        {
+          name: "法匹拉韦",
+          image: "https://via.placeholder.com/600x200?text=法匹拉韦",
+          mechanism: "法匹拉韦是一种新型抗病毒药物，通过抑制病毒特有的RNA依赖性RNA聚合酶，阻断病毒基因复制过程。这一作用机制使其对部分耐药性病毒具有潜在优势。",
+          indications: ["流感病毒感染", "部分新型病毒感染"],
+          details: "法匹拉韦在部分新型病毒感染的临床试验中展现出良好的抗病毒活性，特别是在流感预防和治疗方面。虽然目前仍处于研究和验证阶段，但初步数据表明其能显著降低病毒载量和改善临床症状。"
+        }
+      ]
+    };
+
+    // 定义生成卡片的函数
+    function generateCards(category, containerId) {
+      const container = document.getElementById(containerId);
+
+      drugData[category].forEach(drug => {
+        // 创建最外层 col 容器
+        const colDiv = document.createElement('div');
+        colDiv.className = 'col-md-6 col-lg-4 mb-4';
+
+        // 创建卡片
+        const card = document.createElement('div');
+        card.className = 'card h-100 shadow-sm';
+
+        // 图片部分
+        const img = document.createElement('img');
+        img.src = drug.image;
+        img.className = 'card-img-top';
+        img.alt = drug.name;
+
+        // 卡片主体
+        const cardBody = document.createElement('div');
+        cardBody.className = 'card-body d-flex flex-column';
+
+        // 标题
+        const title = document.createElement('h5');
+        title.className = 'card-title';
+        title.textContent = drug.name;
+
+        // 作用机制
+        const mechTitle = document.createElement('h6');
+        mechTitle.textContent = "作用机制：";
+        mechTitle.className = 'mt-2';
+        const mechPara = document.createElement('p');
+        mechPara.className = 'card-text';
+        mechPara.textContent = drug.mechanism;
+
+        // 适应症
+        const indTitle = document.createElement('h6');
+        indTitle.textContent = "适应症：";
+        indTitle.className = 'mt-2';
+        const indList = document.createElement('ul');
+        drug.indications.forEach(ind => {
+          const li = document.createElement('li');
+          li.textContent = ind;
+          indList.appendChild(li);
+        });
+
+        // 详细描述
+        const detailPara = document.createElement('p');
+        detailPara.className = 'card-text mt-2 text-muted';
+        detailPara.textContent = drug.details;
+
+        // 组合卡片内容
+        cardBody.appendChild(title);
+        cardBody.appendChild(mechTitle);
+        cardBody.appendChild(mechPara);
+        cardBody.appendChild(indTitle);
+        cardBody.appendChild(indList);
+        cardBody.appendChild(detailPara);
+
+        // 组装卡片整体结构
+        card.appendChild(img);
+        card.appendChild(cardBody);
+        colDiv.appendChild(card);
+        container.appendChild(colDiv);
+      });
+    }
+
+    // 分别为各分类生成卡片
+    generateCards("antipyretics", "antipyreticsCards");
+    generateCards("nsaids", "nsaidsCards");
+    generateCards("antivirals", "antiviralsCards");
+  </script>
+</body>
+</html>
