@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>黄金和钻石的化学性质</title>
+    <!-- 引入Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f7f7f7;
+        }
+        .card-header {
+            background-color: #ffe135;
+            color: #333;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">黄金和钻石的化学性质</h1>
+
+    <!-- 黄金卡片 -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h2 class="mb-0">黄金</h2>
+        </div>
+        <div class="card-body">
+            <ul>
+                <li><strong>化学符号：</strong> Au</li>
+                <li><strong>电子排布：</strong> [Xe] 4f<sup>14</sup> 5d<sup>10</sup> 6s<sup>1</sup></li>
+                <li><strong>化学稳定性：</strong> 黄金具有极高的化学惰性，不与大多数化学物质反应。</li>
+                <li><strong>溶解性：</strong> 能溶解于王水（一种浓盐酸和浓硝酸的混合物）中。</li>
+                <li><strong>氧化物：</strong> 在特殊条件下，可以形成氧化金（Au<sub>2</sub>O<sub>3</sub>）。</li>
+            </ul>
+            <button class="btn btn-custom mt-2" onclick="showMoreGoldChemistry()">查看详细的化学反应</button>
+        </div>
+    </div>
+
+    <!-- 钻石卡片 -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h2 class="mb-0">钻石</h2>
+        </div>
+        <div class="card-body">
+            <ul>
+                <li><strong>化学组成：</strong> 纯碳（C）</li>
+                <li><strong>结构：</strong> 四面体晶体结构，使其拥有极高的硬度。</li>
+                <li><strong>化学稳定性：</strong> 在常温下非常稳定，但在高温下可以与氧反应生成二氧化碳（CO<sub>2</sub>）。</li>
+                <li><strong>导电性：</strong> 绝缘体，但掺杂其他元素时可导电。</li>
+            </ul>
+            <button class="btn btn-custom mt-2" onclick="showMoreDiamondChemistry()">查看详细的化学反应</button>
+        </div>
+    </div>
+</div>
+
+<!-- 引入Bootstrap JS和必要的依赖 -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    function showMoreGoldChemistry() {
+        alert("黄金在非常特殊的环境下可以形成某些化合物。例如，AuCl₃ 是一种常见的金化合物。");
+    }
+
+    function showMoreDiamondChemistry() {
+        alert("钻石在超过700°C的高温下会缓慢氧化形成CO₂。此外，在高压下，钻石会转变成石墨。");
+    }
+</script>
+
+</body>
+</html>
